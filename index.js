@@ -114,11 +114,6 @@ const fi = (function() {
       });
     },
 
-<<<<<<< HEAD
-    flatten: function() {},
-
-    functions: function() {}
-=======
     flatten: function(array, shallow) {
       let flattenedAr = [];
       if (!Array.isArray(array)) return newAr.push(array);
@@ -179,8 +174,9 @@ const fi = (function() {
 
     functions: function(object) {
       console.log(object);
-    }
->>>>>>> 48b4fdc9787b524fad0f43823b4e28b513d5d1af
+    },
+
+    functions: function() {}
   };
 })();
 
