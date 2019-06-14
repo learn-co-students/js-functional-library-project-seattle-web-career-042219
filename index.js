@@ -114,6 +114,8 @@ const fi = (function() {
       });
     },
 
+    flatten: function() {},
+
     functions: function() {}
   };
 })();
