@@ -103,6 +103,17 @@ const fi = (function() {
       }
       return newAr;
     },
+
+    sortBy: function(array, callback) {
+      const newCollection = Array.isArray(array)
+        ? array.slice(0)
+        : Object.values(array);
+      let retAr = [];
+      return newCollection.sort(function(a, b) {
+        return callback(a) - callback(b);
+      });
+    },
+
     functions: function() {}
   };
 })();
