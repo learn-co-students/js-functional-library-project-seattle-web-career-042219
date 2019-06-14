@@ -114,7 +114,67 @@ const fi = (function() {
       });
     },
 
-    functions: function() {}
+    flatten: function(array, shallow) {
+      let flattenedAr = [];
+      if (!Array.isArray(array)) return newAr.push(array);
+      if (shallow) {
+      } else {
+      }
+      for (let i = 0; i < array.length; i++) {
+        if (typeof array[i] === "number") {
+          newAr.push(array[i]);
+        } else if (Array.isArray(array[i])) {
+        }
+      }
+      // console.log(newAr);
+      return newAr;
+    },
+
+    uniq: function(array, isSorted = false, callback = false) {
+      // console.log(array);
+      // console.log(isSorted);
+      // console.log(callback);
+      if (isSorted) {
+        let uniqAr = [array[0]];
+        for (let i = 1; i < array.length; i++) {
+          if (uniqAr[i - 1] !== array[i]) {
+            uniqAr.push(array[i]);
+          }
+        }
+        console.log("A");
+        return callback(uniqAr);
+      } else {
+        let uniqAr = [array[0]];
+        for (let i = 1; i < array.length; i++) {
+          if (!uniqAr.includes(array[i])) {
+            uniqAr.push(array[i]);
+          }
+        }
+        console.log("B");
+        console.log(uniqAr.callback);
+        return callback ? callback(uniqAr) : uniqAr;
+      }
+    },
+
+    keys: function(object) {
+      let keysAr = [];
+      for (let key in object) {
+        keysAr.push(key);
+      }
+      return keysAr;
+    },
+
+    values: function(object) {
+      let valuesAr = [];
+      for (let value in object) {
+        valuesAr.push(object[value]);
+      }
+      return valuesAr;
+    },
+
+    functions: function(object) {
+      console.log(object);
+    }
   };
 })();
 
