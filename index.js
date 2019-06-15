@@ -114,45 +114,50 @@ const fi = (function() {
       });
     },
 
-    flatten: function(array, shallow) {
-      let flattenedAr = [];
-      if (!Array.isArray(array)) return newAr.push(array);
+    flatten: function(array, shallow = false, flattenedAr = []) {
       if (shallow) {
+        for (let i = 0; i < array.length; i++) {
+          if (Array.isArray(array[i])) {
+            for (let j = 0; j < array[i].length; j++) {
+              flattenedAr.push(array[i][j]);
+            }
+          } else {
+            flattenedAr.push(array[i]);
+          }
+        }
       } else {
-      }
-      for (let i = 0; i < array.length; i++) {
-        if (typeof array[i] === "number") {
-          newAr.push(array[i]);
-        } else if (Array.isArray(array[i])) {
+        for (let i = 0; i < array.length; i++) {
+          let val = array[i];
+          if (Array.isArray(val)) {
+            this.flatten(val, false, flattenedAr);
+          } else {
+            flattenedAr.push(val);
+          }
         }
       }
-      // console.log(newAr);
-      return newAr;
+      return flattenedAr;
     },
 
     uniq: function(array, isSorted = false, callback = false) {
-      // console.log(array);
-      // console.log(isSorted);
-      // console.log(callback);
       if (isSorted) {
         let uniqAr = [array[0]];
         for (let i = 1; i < array.length; i++) {
           if (uniqAr[i - 1] !== array[i]) {
-            uniqAr.push(array[i]);
+            callback ? uniqAr.push(callback(array[i])) : uniqAr.push(array[i]);
           }
         }
-        console.log("A");
-        return callback(uniqAr);
+        return uniqAr;
       } else {
-        let uniqAr = [array[0]];
-        for (let i = 1; i < array.length; i++) {
-          if (!uniqAr.includes(array[i])) {
+        let modifiedAr = [];
+        let uniqAr = [];
+        for (let i = 0; i < array.length; i++) {
+          let moddedVal = callback ? callback(array[i]) : array[i];
+          if (!modifiedAr.includes(moddedVal)) {
+            modifiedAr.push(moddedVal);
             uniqAr.push(array[i]);
           }
         }
-        console.log("B");
-        console.log(uniqAr.callback);
-        return callback ? callback(uniqAr) : uniqAr;
+        return uniqAr;
       }
     },
 
@@ -173,10 +178,18 @@ const fi = (function() {
     },
 
     functions: function(object) {
-      console.log(object);
+      let newAr = [];
+      for (let key in object) {
+        if (typeof object[key] === "function") {
+          newAr.push(key);
+        }
+      }
+      return newAr.sort();
     },
 
-    functions: function() {}
+    giveMeMore: function() {
+      return true;
+    }
   };
 })();
 
