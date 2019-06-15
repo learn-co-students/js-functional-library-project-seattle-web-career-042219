@@ -53,13 +53,13 @@ const fi = (function() {
       const newCollection = Array.isArray(collection)
         ? collection.slice(0)
         : Object.values(collection);
-      let retAr = [];
+      let filteredArr = [];
       for (let i = 0; i < newCollection.length; i++) {
         if (predicate(newCollection[i])) {
-          retAr.push(newCollection[i]);
+          filteredArr.push(newCollection[i]);
         }
       }
-      return retAr;
+      return filteredArr;
     },
 
     size: function(collection) {
@@ -69,24 +69,21 @@ const fi = (function() {
       return newCollection.length;
     },
 
-    first: function(collection, elements = 1) {
-      const newCollection = Array.isArray(collection)
-        ? collection.slice(0)
-        : Object.values(collection);
-      let retAr = [];
+    first: function(array, elements = 1) {
+      let finalAr = [];
       for (let i = 0; i < elements; i++) {
-        retAr.push(newCollection[i]);
+        finalAr.push(array[i]);
       }
-      return elements === 1 ? retAr.shift() : retAr;
+      return elements === 1 ? finalAr.shift() : finalAr;
     },
 
-    last: function(collection, elements = 0) {
-      const newCollection = Array.isArray(collection)
-        ? collection.slice(0)
-        : Object.values(collection);
-      let retAr = [];
+    last: function(array, elements = 0) {
+      const newCollection = Array.isArray(array)
+        ? array.slice(0)
+        : Object.values(array);
+      let finalAr = [];
       for (let i = 0; i < newCollection.length; i++) {
-        retAr.push(newCollection[i]);
+        finalAr.push(newCollection[i]);
       }
       return elements
         ? newCollection.slice(
@@ -188,7 +185,7 @@ const fi = (function() {
     },
 
     giveMeMore: function() {
-      return true;
+      return trues;
     }
   };
 })();
