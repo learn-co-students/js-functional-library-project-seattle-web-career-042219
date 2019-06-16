@@ -69,44 +69,25 @@ const fi = (function() {
       return newCollection.length;
     },
 
-    first: function(array, elements = 1) {
-      let finalAr = [];
-      for (let i = 0; i < elements; i++) {
-        finalAr.push(array[i]);
-      }
-      return elements === 1 ? finalAr.shift() : finalAr;
+    // Array Functions
+
+    first: function(array, n = 0) {
+      return n ? array.slice(0, n) : array[0];
     },
 
-    last: function(array, elements = 0) {
-      const newCollection = Array.isArray(array)
-        ? array.slice(0)
-        : Object.values(array);
-      let finalAr = [];
-      for (let i = 0; i < newCollection.length; i++) {
-        finalAr.push(newCollection[i]);
-      }
-      return elements
-        ? newCollection.slice(
-            newCollection.length - elements,
-            newCollection.length
-          )
-        : newCollection.pop();
+    last: function(array, n = 0) {
+      return n
+        ? array.slice(array.length - n, array.length)
+        : array[array.length - 1];
     },
 
     compact: function(array) {
-      let newAr = [];
-      for (let i = 0; i < array.length; i++) {
-        array[i] ? newAr.push(array[i]) : null;
-      }
-      return newAr;
+      return array.filter(item => !!item);
     },
 
     sortBy: function(array, callback) {
-      const newCollection = Array.isArray(array)
-        ? array.slice(0)
-        : Object.values(array);
-      let retAr = [];
-      return newCollection.sort(function(a, b) {
+      let newAr = [...array];
+      return newAr.sort(function(a, b) {
         return callback(a) - callback(b);
       });
     },
@@ -182,10 +163,6 @@ const fi = (function() {
         }
       }
       return newAr.sort();
-    },
-
-    giveMeMore: function() {
-      return trues;
     }
   };
 })();
