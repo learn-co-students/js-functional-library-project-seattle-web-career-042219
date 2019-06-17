@@ -174,6 +174,16 @@ const fi = (function() {
 
     functions: function(object) {
       console.log(object);
+      let finalAr = [];
+      if (object) {
+        finalAr.push(object);
+      }
+      console.log(finalAr);
+      finalAr.sort(function(a, b) {
+        return a - b;
+      });
+      console.log(finalAr);
+      return finalAr;
     },
 
     functions: function() {}
